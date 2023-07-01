@@ -1,0 +1,40 @@
+.tablePosFixer
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.table_holder
+{
+    width: 90%;
+    max-height: 90vh;
+    min-height: 40vh;
+    margin-top: 1rem;
+    background-color: wheat;
+    overflow-y: auto;
+}
+
+.App
+{
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+}
+
+.done
+{
+    background-color:green!important;
+    text-shadow: 1px 1px 5px black;
+}
+
+/* .done button
+{
+    background-color: transparent !important;
+    box-shadow: none;
+} */
+
+.done > *
+{
+    color:wheat !important;
+    font-style: italic;
+}
