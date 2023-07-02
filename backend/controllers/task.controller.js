@@ -49,6 +49,44 @@ module.exports.completeTask = async (req,res)=>
     }
 }
 
+module.exports.editTask = async(req,res)=>
+{
+    const {id,taskName,description} = req.body;
+
+    try {
+        const foundTask = await Task.findOne({_id:id});
+
+        if (!foundTask)
+        {
+            return res.status(404).json({status:false,message:'No Task Found For Updating'});
+        }else
+        {
+            foundTask.taskName = taskName;
+            foundTask.description = description;
+            foundTask.completed = false;
+            const response = await foundTask.save();
+            return res.status(200).json({status:true,message:'successfully Edited Task',response:response});
+        }
+    } catch (error) {
+        console.log('Error while editing task',error);
+        return res.status(500).json({status:false,message:'Error while editing task',error:error});
+    }
+}
+
+module.exports.deleteTask = async (req,res)=>
+{
+    const id = req.params.id;
+    console.log('id for delete',id);
+    try {
+        const response = await Task.deleteOne({_id:id});
+        console.log('delete',response);
+        return res.status(200).json({status:true,message:'Successfully Deleted Task',response:response});
+    } catch (error) {
+        console.log('Error While deleting task',error);
+        return res.status(500).json({status:false,message:'Error While deleting task',error:error});
+    }
+}
+
 module.exports.getAllTasks = async(req,res)=>
 {
     try {

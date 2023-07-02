@@ -12,6 +12,25 @@ export const addTask = (taskName, description) => {
     });
 }
 
+export const updateTask = (id, taskName, description) => {
+    return Api().put('/editTask', {
+        id, taskName, description
+    }).then(response => {
+        if (response) {
+            return response.data;
+        }
+    });
+}
+
+export const deleteTask = (id) => {
+    console.log('id for delete', id);
+    return Api().delete(`/deleteTask/${id}`).then(response => {
+        if (response) {
+            return response.data;
+        }
+    });
+}
+
 export const completeTask = (id) => {
     return Api().put('/completeTask', {
         id: id,
